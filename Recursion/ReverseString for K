@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+
+void reverse(string& str,int i,int j)
+{
+    while (i<j)
+    {
+       swap(str[i],str[j]);
+        i++;
+        j--;
+    }
+    
+
+}
+int main()
+{ int k=2;
+    string str="Salman";
+    reverse(str,0,k);
+    cout<<str;
+}
