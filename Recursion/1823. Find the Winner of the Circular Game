@@ -1,0 +1,16 @@
+                                      LeetCode
+---------------------------------------------------------------------------------------------------------
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Find the Winner of the Circular Game.
+Memory Usage: 39 MB, less than 28.39% of Java online submissions for Find the Winner of the Circular Game.
+-------------------------------------------------------------------------------------------------------------
+class Solution {
+    public int findTheWinner(int n, int k) {
+        int p=0;
+        for(int i=1;i<=n;i++)
+        {
+            p=(p+k)%i;
+        }
+        return p+1;
+        
+    }
+}
