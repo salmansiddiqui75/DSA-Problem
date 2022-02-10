@@ -1,0 +1,128 @@
+#include<iostream>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* prev;
+    Node* next;
+    Node(int data)//Constructor for value initilization
+    {
+        this->data=data;
+        this->next=NULL;
+        this->prev=NULL;
+    }
+   
+};
+void insertAtBeg(Node* &head,int d)//To insert element at begning
+{
+    Node* temp=new Node(d);
+    temp->next=head;
+    head=temp;
+    temp->prev=NULL;
+}
+
+void insertAtTail(Node* &tail,int d) //To insert value at last or tail
+{
+    Node* temp=new Node(d);
+    tail->next=temp;
+    temp->prev=tail;
+    tail=temp;
+}
+void insertAtPosition(Node* &head,Node* &tail,int pos,int d) //To insert value at any position
+{
+    Node* temp=head;
+    if(pos==1)//If position is 1 then we call insert at begning function or method
+    {
+        insertAtBeg(head,d);
+        return;
+    }
+    int cnt=1;
+    while(cnt<pos-1)
+    {
+        temp=temp->next;
+        cnt++;
+    }
+    if(temp->next==NULL)//If position is last then we call insert at last 
+    {
+        insertAtTail(tail,d);
+        return;
+    }
+    Node* insertNode=new Node(d);
+    insertNode->next=temp->next;
+    temp->next->prev=insertNode;
+    temp->next=insertNode;
+    insertNode->prev=temp;
+   
+
+}
+void deleteAtBeg(Node* &head,int pos)// To delete an element from any position
+{
+    if(pos==1)
+    {
+        Node* temp=head;
+        temp->next->prev=NULL;
+        head=temp->next;
+        temp->next=NULL;
+        delete temp;
+    }
+    int cnt=1;
+    Node* curr=head;
+    Node* prev=NULL;
+    while(cnt<pos)
+    {
+        prev=curr;
+        curr=curr->next;
+        cnt++;
+    }
+    curr->prev=NULL;
+    prev->next=curr->next;
+    curr->next=NULL;
+    delete curr;
+   
+
+    
+}
+void print(Node* &head)
+{
+    Node* temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+Node* node1=new Node(1);
+Node* tail=node1;
+Node* head=node1;
+print(head);
+insertAtBeg(head,2);
+print(head);
+insertAtBeg(head,3);
+print(head);
+insertAtBeg(head,4);
+print(head);
+insertAtBeg(head,5);
+print(head);
+insertAtTail(tail,2);
+print(head);
+insertAtTail(tail,3);
+print(head);
+insertAtTail(tail,4);
+print(head);
+insertAtTail(tail,5);
+print(head);
+insertAtPosition(head,tail,1,0);
+print(head);
+insertAtPosition(head,tail,1,6);
+print(head);
+insertAtPosition(head,tail,7,8);
+print(head);
+insertAtPosition(head,tail,4,9);
+print(head);
+cout<<"After deleting"<<endl;
+deleteAtBeg(head,5);
+print(head);
+}
