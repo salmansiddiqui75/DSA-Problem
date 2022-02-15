@@ -1,0 +1,27 @@
+Runtime: 283 ms, faster than 6.42% of Java online submissions for Intersection of Two Linked Lists.
+Memory Usage: 55.3 MB, less than 15.80% of Java online submissions for Intersection of Two Linked Lists.-
+-------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode curr1=headA;
+        ListNode curr2=headB;
+        while(curr1!=curr2)
+        {
+            curr1=curr1==null?headA:curr1.next;
+            curr2=curr2==null?headB:curr2.next;
+        }
+        return curr2;
+    }
+}
